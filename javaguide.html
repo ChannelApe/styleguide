@@ -10,7 +10,7 @@
 </head>
 <body onload="initStyleGuide();">
 <div id="content">
-<h1>Google Java Style Guide</h1>
+<h1><a style="color: #000; text-decoration:none " href="https://www.channelape.com/"><img src="https://www.channelape.com/wp-content/themes/ChannelApe/images/logo.png" style="max-width:50px; vertical-align:bottom" /> ChannelApe Java Style Guide</a></h1>
 <div class="vertical_toc" id="tocDiv"></div>
 
 <div class="main_body">
@@ -71,13 +71,14 @@ code. Optional formatting choices made in examples should not be enforced as rul
 <h4 id="s2.3.1-whitespace-characters">2.3.1 Whitespace characters</h4>
 
 <p>Aside from the line terminator sequence, the <strong>ASCII horizontal space
-character</strong> (<strong>0x20</strong>) is the only whitespace character that appears
+character</strong> (<strong>0x20</strong>) and the 
+<strong>ASCII Horizontal Tab</strong> (<strong>0x09</strong>) are the only whitespace characters that appear
 anywhere in a source file. This implies that:</p>
 
 <ol>
   <li>All other whitespace characters in string and character literals are escaped.</li>
-
-  <li>Tab characters are <strong>not</strong> used for indentation.</li>
+  <li>Tab characters are used for indentation.</li>
+  <li>Space characters are <strong>not</strong> used for indentation.</li>
 </ol>
 
 <h4 id="s2.3.2-special-escape-sequences">2.3.2 Special escape sequences</h4>
@@ -344,9 +345,9 @@ applies to both code and comments throughout the block. (See the example in Sect
 <p>Each statement is followed by a line break.</p>
 
 <a name="columnlimit"></a>
-<h3 id="s4.4-column-limit">4.4 Column limit: 100</h3>
+<h3 id="s4.4-column-limit">4.4 Column limit: 120</h3>
 
-<p>Java code has a column limit of 100 characters. A "character" means any Unicode code point.
+<p>Java code has a column limit of 120 characters. A "character" means any Unicode code point.
 Except as noted below, any line that would exceed this limit must be line-wrapped, as explained in
 Section 4.5, <a href="#s4.5-line-wrapping">Line-wrapping</a>.
 </p>
@@ -754,6 +755,10 @@ for example:</p>
 <a name="comments"></a>
 <h4 id="s4.8.6-comments">4.8.6 Comments</h4>
 
+<p>Comments should be used sparingly as they tend to go stale. If a comment seems necessary then 
+maybe that is an indication that the code needs to be refactored to be more readable. If you absolutely 
+must comment, use the following as a guide:</p>
+
 <p>This section addresses <em>implementation comments</em>. Javadoc is addressed separately in
 Section 7, <a href="#s7-javadoc">Javadoc</a>.</p>
 
@@ -836,10 +841,16 @@ adjectives or adjective phrases instead (for example,
 
 <p>There are no specific rules or even well-established conventions for naming annotation types.</p>
 
-<p><em>Test</em> classes are named starting with the name of the class they are testing, and ending
-with <code class="prettyprint lang-java">Test</code>. For example,
-<code class="prettyprint lang-java">HashTest</code> or
-<code class="prettyprint lang-java">HashIntegrationTest</code>.</p>
+<p><em>Unit Test</em> classes should end in Test (i.e. unit tests for <code class="prettyprint lang-java">Foo.class</code> would be in 
+<code class="prettyprint lang-java">FooTest.class</code>). 
+<br /><br />
+Integration Test classes should end in IT (i.e. integration tests 
+for <code class="prettyprint lang-java">Foo.class</code> would be in <code class="prettyprint lang-java">FooIT.class</code>). 
+<br /><br />
+Driver Test (unit or integration tests that
+should not be picked up by build process) classed should end in Driver (i.e. driver 
+tests for <code class="prettyprint lang-java">Foo.class</code> would be in <code class="prettyprint lang-java">FooDriver.class</code>)</p>
+
 
 <h4 id="s5.2.3-method-names">5.2.3 Method names</h4>
 
@@ -849,11 +860,20 @@ with <code class="prettyprint lang-java">Test</code>. For example,
 <code class="prettyprint lang-java">sendMessage</code> or
 <code class="prettyprint lang-java">stop</code>.</p>
 
-<p>Underscores may appear in JUnit <em>test</em> method names to separate logical components of the
-name, with <em>each</em> component written in <a href="#s5.3-camel-case">lowerCamelCase</a>.
-One typical pattern is <code><i>&lt;methodUnderTest&gt;</i>_<i>&lt;state&gt;</i></code>,
-for example <code class="prettyprint lang-java">pop_emptyStack</code>. There is no One Correct
-Way to name test methods.</p>
+<p>Unit test names should reflect a '<a href="https://martinfowler.com/bliki/GivenWhenThen.html" target="_blank">givenWhenThen</a>' format in lowercase. 
+  <ul>
+      <li>The <strong>given</strong> part describes the state of the world before you begin
+        the behavior you're specifying in this scenario. You can think of 
+        it as the pre-conditions to the test.</li>
+      <li>The <strong>when</strong> section is that behavior that you're specifying.</li>
+      <li>Finally the <strong>then</strong> section describes the changes you expect due to the
+        specified behavior.</li>
+  </ul>
+  
+  Say you are testing the following method:
+</p>
+<p><code class="prettyprint lang-java">public boolean sendMessage(String message)</code></p>
+<p>A test name might be: <code class="prettyprint lang-java">givenMessageWhenSendingMessageThenReturnTrue</code></p>
 
 <a name="constants"></a>
 <h4 id="s5.2.4-constant-names">5.2.4 Constant names</h4>
@@ -1039,10 +1059,10 @@ justified is explained in a comment.</p>
 return handleTextResponse(response);
 </pre>
 
-<p class="exception"><strong>Exception:</strong> In tests, a caught exception may be ignored
-without comment <em>if</em> its name is or begins with <code class="prettyprint lang-java">expected</code>. The
-following is a very common idiom for ensuring that the code under test <em>does</em> throw an
-exception of the expected type, so a comment is unnecessary here.</p>
+<p class="exception"><strong>Exception:</strong> In tests, a caught exception may not be ignored.
+If you expect an exception to happen, it can be specified in the annotation of the test.</p>
+
+<p><code class="prettyprint lang-java">@Test(expected = BusinessServiceException.class))</code></p>
 
 <pre class="prettyprint lang-java">try {
   emptyStack.pop();
@@ -1075,11 +1095,68 @@ lang-java">Object.finalize</code>.</p>
 
 "Avoid Finalizers," very carefully, and <em>then</em> don't do it.</p>
 
+<a name="final-fields"></a>
+<h3 id="s6.5-final-fields">6.5 Declaring fields and variables final where possible</h3>
+
+<p>Variables and fields should be declared final where possible. Unless there is a reason
+  for a varaible/field not to be final, then the variable/field should be final. </p>
+
+  <pre class="prettyprint lang-java">
+     private final String fieldName;
+
+     public int method(final String p1) { 
+       final String localVariable = "example";
+      }
+  </pre>
+
+<a name="dont-return-variables-immediately"></a>
+<h3 id="s6.6-dont-return-variables-immediately">6.6 Don't immediately return a variable after declaration</h3>
+
+<p>Do not declare variables that are going to be immediately returned. </p>
+
+  <pre class="prettyprint lang-java">
+      //this
+      public int add(final int num1, final int num2) { 
+        int someNumber = num1 + num2;
+        return someNumber
+      }
+
+      //should be
+      public int add(final int num1, final int num2) { 
+        return num1 + num2
+      }
+  </pre>
+
+
+<h4 id="s6.6.1-cycolmatic-complexity">6.7.1 Don't immediately return a variable after declaration</h4>
+<p>Do not declare variables that are going to be immediately returned. </p>
+
+  <pre class="prettyprint lang-java">
+      //this
+      public int add(final int num1, final int num2) { 
+        int someNumber = num1 + num2;
+        return someNumber
+      }
+
+      //should be
+      public int add(final int num1, final int num2) { 
+        return num1 + num2
+      }
+  </pre>
+<h4 id="s6.6.2-cycolmatic-complexity">6.7.2 Cyclomatic Complexity</h4>
+<p>Ideally, keep cyclomatic complexity of a method to 10 or below. This 
+  helps keeps things clean and concise.
+</p>
+<h4 id="s6.6.3-method-length">6.7.3 Length of Methods</h4>
+<p>Methods should not be more than 100 lines.
+</p>
 
 <a name="javadoc"></a>
 <h2 id="s7-javadoc">7 Javadoc</h2>
 
-
+<p>Javadocs should only be used sparingly on public facing API methods. 
+  As in comments in general, methods should be self explanatory. If not, then
+  a refactoring may be needed. This section defines styles if you absolutely need to use them.</p>
 
 <h3 id="s7.1-javadoc-formatting">7.1 Formatting</h3>
 
@@ -1091,7 +1168,7 @@ lang-java">Object.finalize</code>.</p>
  * Multiple lines of Javadoc text are written here,
  * wrapped normally...
  */
-public int method(String p1) { ... }
+public int method(final String p1) { ... }
 </pre>
 
 <p>... or in this single-line example:</p>
