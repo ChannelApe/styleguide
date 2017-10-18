@@ -1,4 +1,4 @@
-<h1><a style="text-decoration:none; max-width:50px;" href="https://www.channelape.com/"><img src="https://www.channelape.com/wp-content/themes/ChannelApe/images/logo.png" style="max-width:50px; vertical-align:bottom" /> ChannelApe</a> Style Guides (Forked from Google Style Guides)</h1>
+<h1><a href="https://www.channelape.com/"><img src="https://www.channelape.com/wp-content/themes/ChannelApe/images/logo.png" style="text-decoration:none; max-width:50px; vertical-align:bottom" /> ChannelApe</a> Style Guides (Forked from Google Style Guides)</h1>
 ===================
 
 ([ChannelApe/styleguide](https://github.com/ChannelApe/styleguide)) holds 
