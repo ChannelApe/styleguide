@@ -509,8 +509,8 @@ Javadoc, a single ASCII space also appears in the following places <strong>only<
   <ul>
     <li><code class="prettyprint lang-java">@SomeAnnotation({a, b})</code> (no space is used)</li>
 
-    <li><code class="prettyprint lang-java">String[][] x = {{"foo"}};</code> (no space is required
-    between <code class="prettyprint lang-java">{{</code>, by item 8 below)</li>
+    <li><code class="prettyprint lang-java">String[][] x = "foo";</code> (no space is required
+    between <code class="prettyprint lang-java"></code>, by item 8 below)</li>
   </ul>
   </li>
 
@@ -1109,9 +1109,10 @@ lang-java">Object.finalize</code>.</p>
       }
   </pre>
 
-<a name="dont-return-variables-immediately"></a>
-<h3 id="s6.6-dont-return-variables-immediately">6.6 Don't immediately return a variable after declaration</h3>
+<a name="method-best-practices"></a>
+<h3 id="s6.6-method-best-practices">6.6 Method best practices</h3>
 
+<h4 id="s6.6.1-dont-return-variables-immediately">6.6.1 Don't immediately return a variable after declaration</h4>
 <p>Do not declare variables that are going to be immediately returned. </p>
 
   <pre class="prettyprint lang-java">
@@ -1126,28 +1127,11 @@ lang-java">Object.finalize</code>.</p>
         return num1 + num2
       }
   </pre>
-
-
-<h4 id="s6.6.1-cycolmatic-complexity">6.7.1 Don't immediately return a variable after declaration</h4>
-<p>Do not declare variables that are going to be immediately returned. </p>
-
-  <pre class="prettyprint lang-java">
-      //this
-      public int add(final int num1, final int num2) { 
-        int someNumber = num1 + num2;
-        return someNumber
-      }
-
-      //should be
-      public int add(final int num1, final int num2) { 
-        return num1 + num2
-      }
-  </pre>
-<h4 id="s6.6.2-cycolmatic-complexity">6.7.2 Cyclomatic Complexity</h4>
+<h4 id="s6.6.2-cycolmatic-complexity">6.6.2 Cyclomatic Complexity</h4>
 <p>Ideally, keep cyclomatic complexity of a method to 10 or below. This 
   helps keeps things clean and concise.
 </p>
-<h4 id="s6.6.3-method-length">6.7.3 Length of Methods</h4>
+<h4 id="s6.6.3-method-length">6.6.3 Length of Methods</h4>
 <p>Methods should not be more than 100 lines.
 </p>
 
