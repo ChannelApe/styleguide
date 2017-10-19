@@ -13,4 +13,4 @@ Any new style guides will be housed in this project going forward.
 
 
 [java]: https://channelape.github.io/styleguide/javaguide.html
-[angularjs]: https://channelape.github.io/styleguide/angular1jsguide.md
+[angularjs]: https://channelape.github.io/styleguide/angular1jsguide.html
