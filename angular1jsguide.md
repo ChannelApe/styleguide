@@ -1,3 +1,6 @@
+---
+title: Channel Ape AngularJS Style Guide
+---
 # Angular 1 Style Guide
 
 ## Angular Team Endorsed
