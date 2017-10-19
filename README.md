@@ -12,5 +12,5 @@ This project currentlys holds style guides for: <br />
 Any new style guides will be housed in this project going forward.
 
 
-[java]: https://github.com/ChannelApe/styleguide/blob/gh-pages/javaguide.md
-[angularjs]: https://github.com/ChannelApe/styleguide/blob/gh-pages/angular1jsguide.md
+[java]: https://channelape.github.io/styleguide/javaguide.html
+[angularjs]: https://channelape.github.io/styleguide/angular1jsguide.md
