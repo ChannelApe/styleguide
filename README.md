@@ -8,6 +8,7 @@ style guides for building ChannelApe Software
 This project currentlys holds style guides for: <br />
 - [Java Style Guide][java]
 - [Angular JS Style Guide][angularjs]
+- [Javascript Style Guide][javascript]
 
 Any new style guides will be housed in this project going forward.
 
