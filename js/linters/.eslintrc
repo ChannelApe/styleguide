@@ -1,9 +1,30 @@
 {
   "extends": "airbnb",
+  "env": {
+    // define any environment specific properties here.
+    // examples ->
+    // "browser": false,
+    // "node": true
+  },
+  "globals": {
+    // define any global variables to avoid receiving any no-undef exceptions
+    // examples ->
+    // "errorReportingService": true,
+    // "FULFILLMENT_ID_ADDITIONAL_FIELD_KEY": true
+  },
   "rules": {
     "no-use-before-define": ["error", { "functions": false, "classes": false }],
     "linebreak-style": 0,
     "max-len": ["error", 120],
-    "object-shorthand": ["error", "consistent"]
+    "no-prototype-builtins":0,
+    "no-plusplus":0,
+    "consistent-return":1,
+    "prefer-destructuring":0,
+    "no-unused-vars":1,
+    "no-loop-func":0,
+    "array-callback-return":1,
+    "no-shadow" : 1,
+    "no-param-reassign":0,
+    "no-restricted-syntax":1
   }
 }
