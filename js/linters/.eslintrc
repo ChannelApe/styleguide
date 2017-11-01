@@ -1,6 +1,7 @@
 {
   "extends": "airbnb",
   "env": {
+    "jasmine": true
     // define any environment specific properties here.
     // examples ->
     // "browser": false,
